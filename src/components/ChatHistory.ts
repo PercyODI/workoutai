@@ -26,7 +26,10 @@ export class ChatHistory {
 
         let historyString = ""
         for (const history of this.history) {
-            historyString += `${history.speaker.name}: ${history.message}`
+            historyString += `${history.speaker.name} (${history.speaker.role}): ${history.message}\n`
+            if (fullProps.includeActions && history.action) {
+                historyString += `**${history.action}**\n\n`
+            }
         }
 
         return historyString;
