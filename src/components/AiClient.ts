@@ -1,13 +1,22 @@
-import { inject } from "inversify";
-import { TYPES } from "../types";
-import { IAppConfig } from "../IAppConfig";
-import OpenAI from "openai";
+import ky from "ky";
+
+export type MessageProps = {
+    messages: {
+        content: string;
+        role: "system" | "user"
+    }[],
+    model: string;
+    stream: boolean;
+    max_tokens: number;
+    stop: string[];
+
+}
 
 export class AiClient {
-    private openAi: OpenAI;
-    constructor(@inject(TYPES.IAppConfig) appConfig: IAppConfig){
-        this.openAi = new OpenAI({
-            apiKey: appConfig.openaiKey
-        })
+    constructor() {
+    }
+
+    chat(props: MessageProps) {
+
     }
 }

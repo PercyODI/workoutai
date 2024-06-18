@@ -2,7 +2,7 @@ import { Container, inject, injectable, interfaces } from "inversify";
 import { Persona, PersonaProps } from "./components/persona";
 import { PersonaFactory, TPersonaFactory, TYPES } from "./types";
 import path from "path";
-import { writeFile } from "fs/promises";
+import { writeFile, mkdir } from "fs/promises";
 
 @injectable()
 export class Workflow {
@@ -332,6 +332,8 @@ You have been repremanded in the past for being too "flowery" in your speech. Yo
             this.leader,
             // this.notetaker
         ]
+
+        await mkdir("public", { recursive: true })
         const meetingFileName = path.join("public", new Date().getTime().toString());
         const meetingFullFileName = path.join(meetingFileName + "_full")
         while (true) {
